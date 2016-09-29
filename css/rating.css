@@ -1,30 +1,31 @@
 /* -----------------------------------------------------------------------------
 
-  COMPENENTS - RATING
-  
+  COMPONENTS - RATING
+
 ----------------------------------------------------------------------------- */
 .c-rating {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .c-rating__item {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 24px;
-      -ms-flex: 0 0 24px;
-          flex: 0 0 24px;
+  width: 24px;
   height: 24px;
+  display: inline-block;
   background: url("../img/stars.svg");
   background-position: 0 0;
+}
+
+.c-rating.is-editable .c-rating__item {
   cursor: pointer;
 }
 
-.c-rating__item:hover,
+.c-rating.is-editable .c-rating__item:hover,
 .c-rating__item.is-active {
   background-position: -24px 0;
+}
+
+.c-rating__item.is-half {
+  background-position: -48px 0;
 }

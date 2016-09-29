@@ -4,7 +4,7 @@
 
   /**
    * rating
-   * 
+   *
    * @description The rating component.
    * @param {HTMLElement} el The HTMl element to build the rating widget on
    * @param {Number} currentRating The current rating value
@@ -13,14 +13,15 @@
    * @return {Object} Some public methods
    */
   function rating(el, currentRating, maxRating, callback) {
-    
+
     /**
      * stars
-     * 
+     *
      * @description The collection of stars in the rating.
      * @type {Array}
      */
     var stars = [];
+    var editable = false;
 
     /**
      * init
@@ -33,14 +34,28 @@
       if (!currentRating) { currentRating = 0; }
       if (currentRating < 0 || currentRating > maxRating) { throw Error('Current rating is out of bounds.'); }
 
+      if (el.isContentEditable) {
+        editable = true;
+        el.classList.add('is-editable');
+      }
+
       for (var i = 0; i < maxRating; i++) {
         var star = document.createElement('li');
+        var diff = i - currentRating;
+
         star.classList.add('c-rating__item');
         star.setAttribute('data-index', i);
-        if (i < currentRating) { star.classList.add('is-active'); }
+
+        if (diff < -0.75)
+          star.classList.add('is-active');
+        else if (-0.75 <= diff && diff <= -0.25)
+          star.classList.add('is-half');
+
         el.appendChild(star);
         stars.push(star);
-        attachStarEvents(star);
+
+        if (editable)
+          attachStarEvents(star);
       }
     })();
 
@@ -81,6 +96,7 @@
     function starMouseOver(star) {
       star.addEventListener('mouseover', function(e) {
         iterate(stars, function(item, index) {
+          item.classList.remove('is-half');
           if (index <= parseInt(star.getAttribute('data-index'))) {
             item.classList.add('is-active');
           } else {
@@ -133,11 +149,15 @@
       currentRating = value || currentRating;
 
       iterate(stars, function(star, index) {
-        if (index < currentRating) {
+        var diff = index - currentRating;
+
+        star.classList.remove('is-active');
+        star.classList.remove('is-half');
+
+        if (diff < -0.75)
           star.classList.add('is-active');
-        } else {
-          star.classList.remove('is-active');
-        }
+        else if (-0.75 <= diff && diff <= -0.25)
+          star.classList.add('is-half');
       });
 
       if (callback && doCallback) { callback(getRating()); }
@@ -166,6 +186,6 @@
   /**
    * Add to global namespace
    */
-  window.rating = rating;
+  window.FiveStarRating = rating;
 
 })();

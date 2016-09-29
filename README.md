@@ -22,7 +22,7 @@ There are two ways to install the component:
 
 ### Bower
 
-Install it as a bower component: 
+Install it as a bower component:
 
 ```bash
 bower install five-star-rating --save
@@ -52,17 +52,17 @@ Add links to the correct files in your html:
 <head>
 
   ...
-  
+
   <link rel="stylesheet" href="PATH/TO/rating.min.css">
-  
+
   ...
-  
+
 </head>
 <body>
 
 ...
 
-<div id="#el"></div>
+<div id="el" contenteditable></div>
 
 ...
 
@@ -108,7 +108,7 @@ The `rating` instance takes the following 4 arguments:
 
 After instantiation, there are two public methods available:
 
-1. `setRating` - sets the rating of the instance. Takes two parameters, `value` which is the value you'd like to assign to the rating instance, and `doCallback` which is a boolean to determine whether to run the callback or not. It's extremely likely that if you call `setRating` manually, you will need to run the callback. As a result, if no `doCallback` argument is supplied, it defaults to `true`. 
+1. `setRating` - sets the rating of the instance. Takes two parameters, `value` which is the value you'd like to assign to the rating instance, and `doCallback` which is a boolean to determine whether to run the callback or not. It's extremely likely that if you call `setRating` manually, you will need to run the callback. As a result, if no `doCallback` argument is supplied, it defaults to `true`.
 2. `getRating` - this method gets and returns the current rating of the instance. It takes no arguments.
 
 Example usage:
