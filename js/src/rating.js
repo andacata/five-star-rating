@@ -37,6 +37,7 @@
       if (el.isContentEditable) {
         editable = true;
         el.classList.add('is-editable');
+        el.removeAttribute('contenteditable');
       }
 
       for (var i = 0; i < maxRating; i++) {
