@@ -37,7 +37,6 @@
       if (el.dataset.editable && el.dataset.editable.toLowerCase() == 'true') {
         editable = true;
         el.classList.add('is-editable');
-        el.removeAttribute('contenteditable');
       }
 
       for (var i = 0; i < maxRating; i++) {
