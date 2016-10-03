@@ -34,7 +34,7 @@
       if (!currentRating) { currentRating = 0; }
       if (currentRating < 0 || currentRating > maxRating) { throw Error('Current rating is out of bounds.'); }
 
-      if (el.dataset.editable.toLowerCase() == 'true') {
+      if (el.dataset.editable && el.dataset.editable.toLowerCase() == 'true') {
         editable = true;
         el.classList.add('is-editable');
         el.removeAttribute('contenteditable');
